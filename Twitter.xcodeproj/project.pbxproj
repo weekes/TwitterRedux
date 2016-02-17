@@ -12,6 +12,7 @@
 		1F20C1FF1C74D21D00BC4883 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F20C1FD1C74D21D00BC4883 /* Main.storyboard */; };
 		1F20C2011C74D21D00BC4883 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F20C2001C74D21D00BC4883 /* Assets.xcassets */; };
 		1F20C2041C74D21D00BC4883 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1F20C2021C74D21D00BC4883 /* LaunchScreen.storyboard */; };
+		1F546CC21C7523510077D4BB /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F546CC11C7523510077D4BB /* TwitterClient.swift */; };
 		7DDB4B9494D53363C4D9CEC7 /* Pods_Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA6B252C9E486C9278627092 /* Pods_Twitter.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,8 @@
 		1F20C2001C74D21D00BC4883 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F20C2031C74D21D00BC4883 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1F20C2051C74D21D00BC4883 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F546CBD1C7522BA0077D4BB /* Twitter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Twitter-Bridging-Header.h"; sourceTree = "<group>"; };
+		1F546CC11C7523510077D4BB /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = "<group>"; };
 		C9C693A17F03871F7887812E /* Pods-Twitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twitter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Twitter/Pods-Twitter.debug.xcconfig"; sourceTree = "<group>"; };
 		EA6B252C9E486C9278627092 /* Pods_Twitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EBB8E80B640838B3234F4D3D /* Pods-Twitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twitter.release.xcconfig"; path = "Pods/Target Support Files/Pods-Twitter/Pods-Twitter.release.xcconfig"; sourceTree = "<group>"; };
@@ -61,14 +64,24 @@
 		1F20C1F81C74D21D00BC4883 /* Twitter */ = {
 			isa = PBXGroup;
 			children = (
+				1F546CC01C75233B0077D4BB /* API */,
 				1F20C1F91C74D21D00BC4883 /* AppDelegate.swift */,
 				1F20C1FB1C74D21D00BC4883 /* ViewController.swift */,
 				1F20C1FD1C74D21D00BC4883 /* Main.storyboard */,
 				1F20C2001C74D21D00BC4883 /* Assets.xcassets */,
 				1F20C2021C74D21D00BC4883 /* LaunchScreen.storyboard */,
 				1F20C2051C74D21D00BC4883 /* Info.plist */,
+				1F546CBD1C7522BA0077D4BB /* Twitter-Bridging-Header.h */,
 			);
 			path = Twitter;
+			sourceTree = "<group>";
+		};
+		1F546CC01C75233B0077D4BB /* API */ = {
+			isa = PBXGroup;
+			children = (
+				1F546CC11C7523510077D4BB /* TwitterClient.swift */,
+			);
+			name = API;
 			sourceTree = "<group>";
 		};
 		2B7C269C818F45981F799A34 /* Frameworks */ = {
@@ -211,6 +224,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1F20C1FC1C74D21D00BC4883 /* ViewController.swift in Sources */,
+				1F546CC21C7523510077D4BB /* TwitterClient.swift in Sources */,
 				1F20C1FA1C74D21D00BC4883 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,10 +337,13 @@
 			baseConfigurationReference = C9C693A17F03871F7887812E /* Pods-Twitter.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Twitter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.weekes.Twitter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Twitter/Twitter-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -335,10 +352,12 @@
 			baseConfigurationReference = EBB8E80B640838B3234F4D3D /* Pods-Twitter.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				INFOPLIST_FILE = Twitter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = org.weekes.Twitter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Twitter/Twitter-Bridging-Header.h";
 			};
 			name = Release;
 		};

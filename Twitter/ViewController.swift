@@ -7,12 +7,17 @@
 //
 
 import UIKit
+import BDBOAuth1Manager
+
+let requestTokenEndpoint = "oauth/request_token"
+let authTokenEndpoint = "https://api.twitter.com/oauth/authorize?oauth_token"
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,5 +26,18 @@ class ViewController: UIViewController {
     }
 
 
+    @IBAction func onLogin(sender: UIButton) {
+        TwitterClient.sharedInstance.requestSerializer.removeAccessToken()
+        TwitterClient.sharedInstance.fetchRequestTokenWithPath("oauth/request_token", method: "GET", callbackURL: NSURL(string: "cptwitterdemo://oauth"), scope: nil,
+            success: { (requestToken: BDBOAuth1Credential!) -> Void in
+                print("Got the request token: \(requestToken)")
+                
+                let authURL = NSURL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(requestToken.token)")
+                UIApplication.sharedApplication().openURL(authURL!)
+            },
+            failure: { (error: NSError!) -> Void in
+                print("Got an error when requesting request token")
+            })
+    }
 }
 
