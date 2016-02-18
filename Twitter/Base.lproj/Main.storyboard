@@ -31,9 +31,43 @@
                             <constraint firstItem="1pq-Qc-TSI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="hl6-Qr-NwR"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="zRJ-I3-Ayc" kind="presentation" identifier="loginSegue" id="WBJ-pl-Lco"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+        </scene>
+        <!--Tweets View Controller-->
+        <scene sceneID="c7D-jb-JZB">
+            <objects>
+                <viewController storyboardIdentifier="TweetsViewController" id="zRJ-I3-Ayc" customClass="TweetsViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3kK-RM-Ybe"/>
+                        <viewControllerLayoutGuide type="bottom" id="t3C-8M-P0H"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="FKL-Fk-prP">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CeG-t2-DoY">
+                                <rect key="frame" x="276" y="285" width="48" height="30"/>
+                                <state key="normal" title="Logout"/>
+                                <connections>
+                                    <action selector="onLogout:" destination="zRJ-I3-Ayc" eventType="touchUpInside" id="Xqc-Ri-VR1"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="CeG-t2-DoY" firstAttribute="centerX" secondItem="FKL-Fk-prP" secondAttribute="centerX" id="JVz-Rr-Uhw"/>
+                            <constraint firstItem="CeG-t2-DoY" firstAttribute="centerY" secondItem="FKL-Fk-prP" secondAttribute="centerY" id="ff8-ia-GnI"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BNe-uv-bxq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1518" y="461"/>
         </scene>
     </scenes>
 </document>
