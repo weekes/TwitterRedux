@@ -10,4 +10,10 @@ Basic OAuth Walkthrough
 - [x] Complete OAuth dance, fetch user and timeline (20 tweets)
 
 Refactor OAuth
-- [ ] Set up login method
+- [x] Set up login method
+- [x] switch `Tweet` and `User` data models to `struct` instead of `class`
+- [x] embed `TweetsViewController` timeline in `UINavigationController`
+- [x] add `UIAlertView` for logout confirmation
+
+Home Timeline
+- [ ] add `UITableView` for initial set of tweets

@@ -13,7 +13,7 @@ let currentUserKey = "kCurrentUserKey"
 let userDidLoginNotification = "userDidLoginNotification"
 let userDidLogoutNotification = "userDidLogoutNotification"
 
-class User: NSObject {
+struct User {
     
     var name: String?
     var screenname: String?
@@ -21,7 +21,7 @@ class User: NSObject {
     var tagline: String?
     var dictionary: NSDictionary
     
-    class var currentUser: User? {
+    static var currentUser: User? {
         get {
             if _currentUser == nil {
                 if let data = NSUserDefaults.standardUserDefaults().objectForKey(currentUserKey) as? NSData {

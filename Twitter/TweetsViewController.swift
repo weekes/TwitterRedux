@@ -17,11 +17,24 @@ class TweetsViewController: UIViewController {
         
         TwitterClient.sharedInstance.homeTimelineWithParams(nil) { (tweets, error) -> () in
             self.tweets = tweets
+            
             // reload tableView
+            print("numTweets = \(self.tweets!.count)")
         }
     }
 
     @IBAction func onLogout(sender: UIButton) {
-        User.currentUser?.logout()
+        let alertVC = UIAlertController(title: "Logout", message: "Are you sure you want to logout", preferredStyle: .ActionSheet)
+        let logoutAction = UIAlertAction(title: "Logout", style: .Destructive) { (action) in
+            User.currentUser?.logout()
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+            // dismiss
+        }
+        alertVC.addAction(logoutAction)
+        alertVC.addAction(cancelAction)
+        
+        presentViewController(alertVC, animated: true, completion: nil)
+        
     }
 }

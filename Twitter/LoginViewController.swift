@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  LoginViewController.swift
 //  Twitter
 //
 //  Created by Marcel Weekes on 2/17/16.
@@ -12,7 +12,7 @@ import BDBOAuth1Manager
 let requestTokenEndpoint = "oauth/request_token"
 let authTokenEndpoint = "https://api.twitter.com/oauth/authorize?oauth_token"
 
-class ViewController: UIViewController {
+class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

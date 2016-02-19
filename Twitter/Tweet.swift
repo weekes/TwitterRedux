@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Tweet: NSObject {
+struct Tweet {
     
     var user: User?
     var text: String?
@@ -16,7 +16,7 @@ class Tweet: NSObject {
     var createdAt: NSDate?
     var dictionary: NSDictionary
     
-    class func tweetsWithArray(array: [NSDictionary]) -> [Tweet]? {
+    static func tweetsWithArray(array: [NSDictionary]) -> [Tweet]? {
         var tweets = [Tweet]()
         
         for dictionary in array {

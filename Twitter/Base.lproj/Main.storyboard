@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -32,13 +32,13 @@
                         </constraints>
                     </view>
                     <connections>
-                        <segue destination="zRJ-I3-Ayc" kind="presentation" identifier="loginSegue" id="WBJ-pl-Lco"/>
+                        <segue destination="bzF-Ag-g7F" kind="presentation" identifier="loginSegue" id="WBJ-pl-Lco"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--Tweets View Controller-->
+        <!--Home-->
         <scene sceneID="c7D-jb-JZB">
             <objects>
                 <viewController storyboardIdentifier="TweetsViewController" id="zRJ-I3-Ayc" customClass="TweetsViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
@@ -49,23 +49,40 @@
                     <view key="view" contentMode="scaleToFill" id="FKL-Fk-prP">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CeG-t2-DoY">
-                                <rect key="frame" x="276" y="285" width="48" height="30"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Home" id="zxW-21-zPR">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="xCq-Vv-pJD">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="CeG-t2-DoY">
+                                <rect key="frame" x="20" y="7" width="48" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Logout"/>
                                 <connections>
                                     <action selector="onLogout:" destination="zRJ-I3-Ayc" eventType="touchUpInside" id="Xqc-Ri-VR1"/>
                                 </connections>
                             </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="CeG-t2-DoY" firstAttribute="centerX" secondItem="FKL-Fk-prP" secondAttribute="centerX" id="JVz-Rr-Uhw"/>
-                            <constraint firstItem="CeG-t2-DoY" firstAttribute="centerY" secondItem="FKL-Fk-prP" secondAttribute="centerY" id="ff8-ia-GnI"/>
-                        </constraints>
-                    </view>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BNe-uv-bxq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2211" y="461"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Atm-KM-la4">
+            <objects>
+                <navigationController storyboardIdentifier="TimelineNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="bzF-Ag-g7F" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="It7-BK-w7x">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="zRJ-I3-Ayc" kind="relationship" relationship="rootViewController" id="ntO-6n-YRx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QKy-7g-vmE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1518" y="461"/>
         </scene>
