@@ -12,14 +12,16 @@ class TweetsViewController: UIViewController {
     
     var tweets: [Tweet]?
     
+    @IBOutlet private weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.dataSource = self
+        
         TwitterClient.sharedInstance.homeTimelineWithParams(nil) { (tweets, error) -> () in
             self.tweets = tweets
-            
-            // reload tableView
-            print("numTweets = \(self.tweets!.count)")
+            self.tableView.reloadData()
         }
     }
 
@@ -37,4 +39,25 @@ class TweetsViewController: UIViewController {
         presentViewController(alertVC, animated: true, completion: nil)
         
     }
+}
+
+
+// MARK: - UITableViewDataSource
+extension TweetsViewController: UITableViewDataSource {
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tweets?.count ?? 0
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell")! as UITableViewCell // TODO: TweetCell
+        
+        if let tweets = tweets {
+            let tweet = tweets[indexPath.row]
+            cell.textLabel!.text = tweet.text
+        }
+        
+        return cell
+    }
+    
 }

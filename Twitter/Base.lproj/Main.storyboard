@@ -49,7 +49,29 @@
                     <view key="view" contentMode="scaleToFill" id="FKL-Fk-prP">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="zeq-nq-7H4">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetCell" id="2Q7-p5-w7E">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Q7-p5-w7E" id="dzU-xi-WYh">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="t3C-8M-P0H" firstAttribute="top" secondItem="zeq-nq-7H4" secondAttribute="bottom" id="99b-Kq-pEW"/>
+                            <constraint firstItem="zeq-nq-7H4" firstAttribute="top" secondItem="3kK-RM-Ybe" secondAttribute="bottom" id="CJr-T1-Kw0"/>
+                            <constraint firstAttribute="trailing" secondItem="zeq-nq-7H4" secondAttribute="trailing" id="OXo-de-gce"/>
+                            <constraint firstItem="zeq-nq-7H4" firstAttribute="leading" secondItem="FKL-Fk-prP" secondAttribute="leading" id="rtW-rf-p1L"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="zxW-21-zPR">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="xCq-Vv-pJD">
@@ -63,6 +85,9 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="zeq-nq-7H4" id="ju4-U4-lkU"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BNe-uv-bxq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
