@@ -18,9 +18,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1pq-Qc-TSI">
-                                <rect key="frame" x="239" y="285" width="122" height="30"/>
-                                <state key="normal" title="Login with Twitter"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1pq-Qc-TSI">
+                                <rect key="frame" x="221" y="286" width="158" height="28"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="28" id="9nl-SO-B9t"/>
+                                    <constraint firstAttribute="width" constant="158" id="hUB-EN-64k"/>
+                                </constraints>
+                                <state key="normal" title="Login with Twitter" image="Sign in with Twitter"/>
                                 <connections>
                                     <action selector="onLogin:" destination="BYZ-38-t0r" eventType="touchUpInside" id="uLC-Sb-mKw"/>
                                 </connections>
@@ -28,8 +32,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="1pq-Qc-TSI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="c5d-p6-bpp"/>
-                            <constraint firstItem="1pq-Qc-TSI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="hl6-Qr-NwR"/>
+                            <constraint firstItem="1pq-Qc-TSI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4Sw-HR-OT9"/>
+                            <constraint firstItem="1pq-Qc-TSI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="XJq-8A-s9A"/>
                         </constraints>
                     </view>
                     <connections>
@@ -38,6 +42,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="813" y="461"/>
         </scene>
         <!--Home-->
         <scene sceneID="c7D-jb-JZB">
@@ -150,4 +155,7 @@
             <point key="canvasLocation" x="1518" y="461"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Sign in with Twitter" width="158" height="28"/>
+    </resources>
 </document>

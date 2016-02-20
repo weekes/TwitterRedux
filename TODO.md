@@ -14,12 +14,14 @@
 - [x] switch `Tweet` and `User` data models to `struct` instead of `class`
 - [x] embed `TweetsViewController` timeline in `UINavigationController`
 - [x] add `UIAlertController` for logout confirmation
-- [ ] switch to `.Alert` style `UIAlertController` for logout confirmation
+- [x] switch to `.Alert` style `UIAlertController` for logout confirmation
+- [x] *Optional* use official Login with Twitter button?
 
 #### Home Timeline
 - [x] add `UITableView` for initial set of tweets
 - [x] add ATS Exception for `pbs.twimg.com`
 - [x] add custom `TweetCell` as prototype cell for tableView
+- [x] use SSL-enabled profile images `profile_image_url_https`
 
 #### Prototype cell
 - [x] clip profile image radius
