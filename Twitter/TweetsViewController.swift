@@ -18,6 +18,8 @@ class TweetsViewController: UIViewController {
         super.viewDidLoad()
         
         tableView.dataSource = self
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 140
         
         TwitterClient.sharedInstance.homeTimelineWithParams(nil) { (tweets, error) -> () in
             self.tweets = tweets
@@ -50,11 +52,11 @@ extension TweetsViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell")! as UITableViewCell // TODO: TweetCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell") as! TweetCell
         
         if let tweets = tweets {
             let tweet = tweets[indexPath.row]
-            cell.textLabel!.text = tweet.text
+            cell.tweet = tweet
         }
         
         return cell

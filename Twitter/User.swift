@@ -57,7 +57,7 @@ struct User {
         
         name = dictionary["name"] as? String
         screenname = dictionary["screen_name"] as? String
-        profileImageUrlString = dictionary["profile_image_ulr"] as? String
+        profileImageUrlString = dictionary["profile_image_url"] as? String
         tagline = dictionary["description"] as? String
     }
     
