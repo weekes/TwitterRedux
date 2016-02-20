@@ -22,13 +22,16 @@
 - [x] add ATS Exception for `pbs.twimg.com`
 - [x] add custom `TweetCell` as prototype cell for tableView
 - [x] use SSL-enabled profile images `profile_image_url_https`
+- [ ] debug intermittent `kCFStreamErrorDomainSSL, -9802` SSL certificate error
+- [ ] change navbar color theme (is this across entire app?)
 
 #### Prototype cell
 - [x] clip profile image radius
 - [ ] consider using `nameLabel.preferredMaxLayoutWidth` hack
-- [ ] add user handle label
-- [ ] add timestamp label
+- [x] add user handle label
+- [x] add timestamp label
 - [ ] add "explanation" label
+- [ ] calculate relative timestamp string
 
 #### Tweet Details screen
 - [ ] add `TweetDetailViewController` for tweet detail

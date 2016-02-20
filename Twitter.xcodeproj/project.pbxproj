@@ -81,6 +81,7 @@
 		1F20C1F81C74D21D00BC4883 /* Twitter */ = {
 			isa = PBXGroup;
 			children = (
+				1F6AC89A1C78E2D100CA51C6 /* Views */,
 				1F8FB2D11C76FF5500C0BAFE /* Controllers */,
 				1F0DD0BD1C75ACFA00B540D2 /* Models */,
 				1F546CC01C75233B0077D4BB /* API */,
@@ -90,7 +91,6 @@
 				1F20C2001C74D21D00BC4883 /* Assets.xcassets */,
 				1F20C2051C74D21D00BC4883 /* Info.plist */,
 				1F546CBD1C7522BA0077D4BB /* Twitter-Bridging-Header.h */,
-				1F6AC8981C78305700CA51C6 /* TweetCell.swift */,
 			);
 			path = Twitter;
 			sourceTree = "<group>";
@@ -101,6 +101,14 @@
 				1F546CC11C7523510077D4BB /* TwitterClient.swift */,
 			);
 			name = API;
+			sourceTree = "<group>";
+		};
+		1F6AC89A1C78E2D100CA51C6 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1F6AC8981C78305700CA51C6 /* TweetCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		1F8FB2D11C76FF5500C0BAFE /* Controllers */ = {

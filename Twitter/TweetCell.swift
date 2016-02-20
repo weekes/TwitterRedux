@@ -27,10 +27,10 @@ class TweetCell: UITableViewCell {
                     }
                 }
                 usernameLabel.text = user.name
-//                screennameLabel.text = user.screenname
+                screennameLabel.text = "@\(user.screenname!)"
             }
             
-//            timestampLabel.text = tweet.createdAt?.description
+            timestampLabel.text = tweet.relativeTimestamp
             tweetTextLabel.text = tweet.text
         }
     }

@@ -10,12 +10,36 @@ import UIKit
 
 struct Tweet {
     
-    var user: User?
-    var text: String?
-    var createdAtString: String?
-    var createdAt: NSDate?
-    var dictionary: NSDictionary
+    let user: User?
+    let text: String?
+    let createdAtString: String?
+    let dictionary: NSDictionary
     
+    private static var dateFormatter: NSDateFormatter = {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
+        return dateFormatter
+    }()
+    
+    private static var relativeDateFormatter: NSDateFormatter = {
+        let relativeDateFormatter = NSDateFormatter()
+        relativeDateFormatter.timeStyle = .ShortStyle
+        relativeDateFormatter.doesRelativeDateFormatting = true
+        return relativeDateFormatter
+    }()
+    
+    var relativeTimestamp: String? {
+        return Tweet.convertDateToRelativeTimestamp(createdAtDate!)
+    }
+    
+    var createdAtDate: NSDate? {
+        return Tweet.dateFormatter.dateFromString(createdAtString!)
+    }
+    
+    private static func convertDateToRelativeTimestamp(date: NSDate) -> String? {
+        return Tweet.relativeDateFormatter.stringFromDate(date)
+    }
+
     static func tweetsWithArray(array: [NSDictionary]) -> [Tweet]? {
         var tweets = [Tweet]()
         
@@ -32,10 +56,6 @@ struct Tweet {
         user = User(dictionary: dictionary["user"] as! NSDictionary)
         text = dictionary["text"] as? String
         createdAtString = dictionary["created_at"] as? String
-        
-        // TODO: use static NSDateFormatter
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
-        createdAt = formatter.dateFromString(createdAtString!)
     }
+
 }
