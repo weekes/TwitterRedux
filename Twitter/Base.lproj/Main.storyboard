@@ -114,9 +114,9 @@
                     <navigationItem key="navigationItem" title="Home" id="zxW-21-zPR">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="xCq-Vv-pJD">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="CeG-t2-DoY">
-                                <rect key="frame" x="20" y="7" width="48" height="30"/>
+                                <rect key="frame" x="20" y="7" width="64" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Logout"/>
+                                <state key="normal" title="Sign out"/>
                                 <connections>
                                     <action selector="onLogout:" destination="zRJ-I3-Ayc" eventType="touchUpInside" id="Xqc-Ri-VR1"/>
                                 </connections>
