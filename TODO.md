@@ -21,6 +21,7 @@
 - [x] add `UITableView` for initial set of tweets
 - [x] add ATS Exception for `pbs.twimg.com`
 - [x] add custom `TweetCell` as prototype cell for tableView
+- [x] add support for pullToRefresh
 - [x] use SSL-enabled profile images `profile_image_url_https`
 - [ ] debug intermittent `kCFStreamErrorDomainSSL, -9802` SSL certificate error
 - [ ] change navbar color theme (is this across entire app?)
