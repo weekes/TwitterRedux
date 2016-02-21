@@ -40,7 +40,7 @@ class TweetDetailViewController: UIViewController {
         timestampLabel.text = tweet.absoluteTimestamp
         
         retweetsLabel.text = "\(tweet.retweetCount!) RETWEETS"
-        favoritesLabel.text = "\(tweet.favouritesCount!) FAVORITES"
+        favoritesLabel.text = "\(tweet.favoriteCount!) FAVORITES"
     }
 
     override func didReceiveMemoryWarning() {

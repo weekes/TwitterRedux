@@ -39,7 +39,7 @@
 - [x] layout TweetDetail controls
 - [x] add image assets (`.png` instead of `.svg` - why doesn't iOS like SVG?)
 - [x] add retweet and favorite counts
-- [ ] **debug** why `favourites_count` is always 0
+- [x] **debug** why `favourites_count` is always 0
 - [ ] add support for favorite
 - [ ] add support for retweet
 - [ ] add support for reply

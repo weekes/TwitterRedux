@@ -15,7 +15,7 @@ struct Tweet {
     let createdAtString: String?
     let dictionary: NSDictionary
     let retweetCount: NSNumber?
-    let favouritesCount: NSNumber?
+    let favoriteCount: NSNumber?
     
     private static var dateFormatter: NSDateFormatter = {
         let dateFormatter = NSDateFormatter()
@@ -68,7 +68,7 @@ struct Tweet {
         text = dictionary["text"] as? String
         createdAtString = dictionary["created_at"] as? String
         retweetCount = dictionary["retweet_count"] as? NSNumber ?? 0
-        favouritesCount = dictionary["favourites_count"] as? NSNumber ?? 0
+        favoriteCount = dictionary["favorite_count"] as? NSNumber ?? 0
     }
 
 }
