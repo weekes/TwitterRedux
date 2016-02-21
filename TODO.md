@@ -42,6 +42,7 @@
 - [x] **debug** why `favourites_count` is always 0
 - [x] add support for favorite
 - [x] add support for retweet
+- [x] immediately update state for like and retweet buttons
 - [ ] add support for reply
 
 #### Compose Tweet screen

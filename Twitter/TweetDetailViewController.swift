@@ -26,6 +26,8 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet private weak var likeButton: UIButton!
     
     
+    // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,19 +48,8 @@ class TweetDetailViewController: UIViewController {
         retweetsLabel.text = "\(tweet.retweetCount!) RETWEETS"
         favoritesLabel.text = "\(tweet.favoriteCount!) FAVORITES"
 
-        if tweet.favorited! == true {
-            let image = UIImage(named: "like")
-            let tintImage = image?.imageWithRenderingMode(.AlwaysTemplate)
-            likeButton.setImage(tintImage, forState: .Normal)
-            likeButton.tintColor = UIColor.redColor()
-        }
-        
-        if tweet.retweeted! == true {
-            let image = UIImage(named: "retweet")
-            let tintImage = image?.imageWithRenderingMode(.AlwaysTemplate)
-            retweetButton.setImage(tintImage, forState: .Normal)
-            retweetButton.tintColor = UIColor.redColor()
-        }
+        updateLikeButton(tweet.favorited!)
+        updateRetweetButton(tweet.retweeted!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,11 +58,14 @@ class TweetDetailViewController: UIViewController {
     }
     
 
+    
+    // MARK: - Actions
+
     @IBAction func onFavoriteTweet(sender: UIButton) {
         let tweetId = tweet.id
         let params = ["id": tweetId!]
         TwitterClient.sharedInstance.favoriteTweetWithParams(params) { (success, error) -> () in
-            print("you just favorited tweet: \(tweetId)")
+            self.updateLikeButton(success)
         }
     }
     
@@ -79,12 +73,27 @@ class TweetDetailViewController: UIViewController {
         let tweetId = tweet.id
         let params = ["id": tweetId!]
         TwitterClient.sharedInstance.retweetTweetWithParams(tweetId!, params: params) { (success, error) -> () in
-            print("you just retweeted tweet: \(tweetId)")
+            self.updateRetweetButton(success)
         }
     }
     
     
+    // MARK: - View helpers
     
+    private func updateLikeButton(favorited: Bool) {
+        let image = UIImage(named: "like")
+        let tintImage = image?.imageWithRenderingMode(.AlwaysTemplate)
+        likeButton.setImage(tintImage, forState: .Normal)
+        likeButton.tintColor = favorited ? UIColor.redColor() : UIColor.blackColor()
+    }
+    
+    private func updateRetweetButton(retweeted: Bool) {
+        let image = UIImage(named: "retweet")
+        let tintImage = image?.imageWithRenderingMode(.AlwaysTemplate)
+        retweetButton.setImage(tintImage, forState: .Normal)
+        retweetButton.tintColor = retweeted ? UIColor.redColor() : UIColor.blackColor()
+    }
+
     
     /*
     // MARK: - Navigation
