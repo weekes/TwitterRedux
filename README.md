@@ -2,7 +2,7 @@
 
 **Twitter** is a basic twitter app to read and compose tweets from the [Twitter API](https://apps.twitter.com/).
 
-Time spent: **8** hours spent in total
+Time spent: **16** hours spent in total
 
 ## User Stories
 
@@ -46,6 +46,8 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 ## Notes
 
 Describe any challenges encountered while building the app.
+
+1. I can't believe `UITextView` doesn't support placeholder text. Is the right way to handle this an extension?
 
 ## License
 

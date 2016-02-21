@@ -16,13 +16,14 @@
 - [x] add `UIAlertController` for logout confirmation
 - [x] switch to `.Alert` style `UIAlertController` for logout confirmation
 - [x] *Optional* use official Login with Twitter button?
+- [ ] add a label with explanatory text on login screen
 
 #### Home Timeline
 - [x] add `UITableView` for initial set of tweets
 - [x] add ATS Exception for `pbs.twimg.com`
 - [x] add custom `TweetCell` as prototype cell for tableView
 - [x] add support for pullToRefresh
-- [x] change navbar color theme (is this across entire app or vc by vc?)
+- [x] change navbar color theme (is this across entire app or vc by vc? RGB=85,172,238, HEX #55ACEE)
 - [x] use SSL-enabled profile images `profile_image_url_https`
 - [ ] **debug** intermittent `kCFStreamErrorDomainSSL, -9802` SSL certificate error
 
@@ -46,7 +47,8 @@
 - [ ] add support for reply
 
 #### Compose Tweet screen
-- [ ] add `TweetComposeViewController` for posting tweet
-- [ ] layout TweetCompose screen
-- [ ] present screen modally
+- [x] add `ComposeTweetViewController` for posting tweet
+- [x] layout ComposeTweet screen
+- [x] present screen modally
+- [x] change navbar background color and text color (HEX #55ACEE)
 - [ ] wire up posting tweet

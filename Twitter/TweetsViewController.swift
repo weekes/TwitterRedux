@@ -52,10 +52,24 @@ class TweetsViewController: UIViewController {
             let detailsVC = segue.destinationViewController as! TweetDetailViewController
             detailsVC.tweet = cell.tweet
         }
+        
+        if segue.identifier == "composeSegue" {
+            let navController = segue.destinationViewController as! UINavigationController
+            let composeVC = navController.topViewController as! ComposeTweetViewController
+            composeVC.user = User.currentUser
+        }
     }
 
     
     // MARK: - Actions
+    
+    @IBAction func postTweet(sender: UIStoryboardSegue) {
+        let composeTweetVC = sender.sourceViewController as! ComposeTweetViewController
+        let tweetText = composeTweetVC.tweetContents
+        
+        let postingUser = User.currentUser
+        print("posting tweet on behalf of \(postingUser?.screenname): \(tweetText)")
+    }
 
     @IBAction func onLogout(sender: UIButton) {
         if let user = User.currentUser {
