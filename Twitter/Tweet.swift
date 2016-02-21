@@ -14,6 +14,8 @@ struct Tweet {
     let text: String?
     let createdAtString: String?
     let dictionary: NSDictionary
+    let retweetCount: NSNumber?
+    let favouritesCount: NSNumber?
     
     private static var dateFormatter: NSDateFormatter = {
         let dateFormatter = NSDateFormatter()
@@ -28,8 +30,20 @@ struct Tweet {
         return relativeDateFormatter
     }()
     
+    private static var absoluteDateFormatter: NSDateFormatter = {
+        let absoluteDateFormatter = NSDateFormatter()
+        absoluteDateFormatter.timeStyle = .ShortStyle
+        absoluteDateFormatter.dateStyle = .ShortStyle
+        absoluteDateFormatter.doesRelativeDateFormatting = false
+        return absoluteDateFormatter
+    }()
+    
     var relativeTimestamp: String? {
         return Tweet.convertDateToRelativeTimestamp(createdAtDate!)
+    }
+    
+    var absoluteTimestamp: String? {
+        return Tweet.convertDateToAbsoluteTimestamp(createdAtDate!)
     }
     
     var createdAtDate: NSDate? {
@@ -40,6 +54,10 @@ struct Tweet {
         return Tweet.relativeDateFormatter.stringFromDate(date)
     }
 
+    private static func convertDateToAbsoluteTimestamp(date: NSDate) -> String? {
+        return Tweet.absoluteDateFormatter.stringFromDate(date)
+    }
+    
     static func tweetsWithArray(array: [NSDictionary]) -> [Tweet]? {
         var tweets = [Tweet]()
         
@@ -56,6 +74,8 @@ struct Tweet {
         user = User(dictionary: dictionary["user"] as! NSDictionary)
         text = dictionary["text"] as? String
         createdAtString = dictionary["created_at"] as? String
+        retweetCount = dictionary["retweet_count"] as? NSNumber ?? 0
+        favouritesCount = dictionary["favourites_count"] as? NSNumber ?? 0
     }
 
 }

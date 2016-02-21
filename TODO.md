@@ -22,21 +22,30 @@
 - [x] add ATS Exception for `pbs.twimg.com`
 - [x] add custom `TweetCell` as prototype cell for tableView
 - [x] add support for pullToRefresh
+- [x] change navbar color theme (is this across entire app or vc by vc?)
 - [x] use SSL-enabled profile images `profile_image_url_https`
 - [ ] debug intermittent `kCFStreamErrorDomainSSL, -9802` SSL certificate error
-- [ ] change navbar color theme (is this across entire app?)
 
 #### Prototype cell
 - [x] clip profile image radius
-- [ ] consider using `nameLabel.preferredMaxLayoutWidth` hack
 - [x] add user handle label
 - [x] add timestamp label
 - [ ] add "explanation" label
 - [ ] calculate relative timestamp string
+- [ ] consider using `nameLabel.preferredMaxLayoutWidth` hack
 
 #### Tweet Details screen
-- [ ] add `TweetDetailViewController` for tweet detail
-- [ ] layout TweetDetail controls
+- [x] add `TweetDetailViewController` for tweet detail
+- [x] layout TweetDetail controls
+- [x] add image assets (`.png` instead of `.svg` - why doesn't iOS like SVG?)
+- [x] add retweet and favorite counts
+- [ ] debug why `favourites_count` is always 0
 - [ ] add support for favorite
 - [ ] add support for retweet
 - [ ] add support for reply
+
+#### Compose Tweet screen
+- [ ] add `TweetComposeViewController` for posting tweet
+- [ ] layout TweetCompose screen
+- [ ] present screen modally
+- [ ] wire up posting tweet
