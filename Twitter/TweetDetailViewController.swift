@@ -20,7 +20,11 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet private weak var tweetTextLabel: UILabel!
     @IBOutlet private weak var retweetsLabel: UILabel!
     @IBOutlet private weak var favoritesLabel: UILabel!
-
+    
+    @IBOutlet weak var replyButton: UIButton!
+    @IBOutlet private weak var retweetButton: UIButton!
+    @IBOutlet private weak var likeButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +45,16 @@ class TweetDetailViewController: UIViewController {
         
         retweetsLabel.text = "\(tweet.retweetCount!) RETWEETS"
         favoritesLabel.text = "\(tweet.favoriteCount!) FAVORITES"
+
+        if tweet.favorited! == true {
+            // FIXME: need to change the color of the actual button image
+            likeButton.imageView?.backgroundColor = UIColor.redColor()
+        }
+        
+        if tweet.retweeted! == true {
+            // FIXME: need to change the color of the actual button image
+            retweetButton.imageView?.backgroundColor = UIColor.redColor()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -49,6 +63,25 @@ class TweetDetailViewController: UIViewController {
     }
     
 
+    @IBAction func onFavoriteTweet(sender: UIButton) {
+        let tweetId = tweet.id
+        let params = ["id": tweetId!]
+        TwitterClient.sharedInstance.favoriteTweetWithParams(params) { (success, error) -> () in
+            print("you just favorited tweet: \(tweetId)")
+        }
+    }
+    
+    @IBAction func onRetweetTweet(sender: UIButton) {
+        let tweetId = tweet.id
+        let params = ["id": tweetId!]
+        TwitterClient.sharedInstance.retweetTweetWithParams(tweetId!, params: params) { (success, error) -> () in
+            print("you just retweeted tweet: \(tweetId)")
+        }
+    }
+    
+    
+    
+    
     /*
     // MARK: - Navigation
 

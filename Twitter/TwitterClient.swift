@@ -46,6 +46,38 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    func favoriteTweetWithParams(params: NSDictionary?, completion: (success: Bool, error: NSError?) -> ()) {
+        
+        // POST favorite
+        POST("1.1/favorites/create.json", parameters: params,
+            progress: nil,
+            success:  { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
+                // SUCCESS
+                completion(success: true, error: nil)
+            },
+            failure: { (operation: NSURLSessionDataTask?, error: NSError) -> Void in
+                //FAILURE
+                print("Unable to favorite tweet: \(error)")
+                completion(success: false, error: error)
+        })
+    }
+    
+    func retweetTweetWithParams(tweetId: NSNumber, params: NSDictionary?, completion: (success: Bool, error: NSError?) -> ()) {
+        
+        // POST retweet
+        POST("1.1/statuses/retweet/\(tweetId).json", parameters: params,
+            progress: nil,
+            success: { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
+                // SUCCESS
+                completion(success: true, error:nil)
+        },
+            failure: { (operation: NSURLSessionDataTask?, error: NSError) -> Void in
+                //FAILURE
+                print("Unable to retweet tweet: \(error)")
+                completion(success: false, error: error)
+        })
+    }
+    
     func loginWithCompletion(completion: (user: User?, error: NSError?) -> ()) {
         loginCompletion = completion
         

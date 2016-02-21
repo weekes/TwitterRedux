@@ -240,6 +240,9 @@
                                     <constraint firstAttribute="height" constant="72" id="vkG-Gr-mM7"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="retweet"/>
+                                <connections>
+                                    <action selector="onRetweetTweet:" destination="6ZM-rP-U0J" eventType="touchUpInside" id="09J-pg-Qa3"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yeY-yf-Z1w" userLabel="Like button">
                                 <rect key="frame" x="192" y="282" width="54" height="72"/>
@@ -247,7 +250,12 @@
                                     <constraint firstAttribute="width" constant="54" id="Jse-jT-aoe"/>
                                     <constraint firstAttribute="height" constant="72" id="VXj-Ug-jqw"/>
                                 </constraints>
-                                <state key="normal" title="Button" image="like"/>
+                                <state key="normal" title="Button" image="like">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="onFavoriteTweet:" destination="6ZM-rP-U0J" eventType="touchUpInside" id="46f-jS-iJE"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hLg-b1-P21">
                                 <rect key="frame" x="20" y="355" width="560" height="2"/>
@@ -296,7 +304,10 @@
                     </view>
                     <connections>
                         <outlet property="favoritesLabel" destination="8ot-GN-Hr8" id="y89-gc-jsV"/>
+                        <outlet property="likeButton" destination="yeY-yf-Z1w" id="AWL-ZE-EcE"/>
                         <outlet property="profileImageView" destination="Nle-Sx-lwV" id="c5r-zP-LVf"/>
+                        <outlet property="replyButton" destination="WZn-vJ-W56" id="Bu8-7R-HyQ"/>
+                        <outlet property="retweetButton" destination="UWn-cY-iLy" id="Djp-AA-lUL"/>
                         <outlet property="retweetsLabel" destination="dz5-Qj-j4z" id="UCw-lA-k6L"/>
                         <outlet property="screennameLabel" destination="b5j-w1-cDN" id="c0r-6P-NLl"/>
                         <outlet property="timestampLabel" destination="zuo-CU-U24" id="NZk-f8-Ds6"/>

@@ -17,6 +17,9 @@ struct Tweet {
     let retweetCount: NSNumber?
     let favoriteCount: NSNumber?
     
+    let favorited: Bool?
+    let retweeted: Bool?
+    
     private static var dateFormatter: NSDateFormatter = {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
@@ -41,6 +44,10 @@ struct Tweet {
     
     var createdAtDate: NSDate? {
         return Tweet.dateFormatter.dateFromString(createdAtString!)
+    }
+    
+    var id: NSNumber? {
+        return self.dictionary["id"] as? NSNumber
     }
     
     private static func convertDateToRelativeTimestamp(date: NSDate) -> String? {
@@ -69,6 +76,9 @@ struct Tweet {
         createdAtString = dictionary["created_at"] as? String
         retweetCount = dictionary["retweet_count"] as? NSNumber ?? 0
         favoriteCount = dictionary["favorite_count"] as? NSNumber ?? 0
+        
+        favorited = dictionary["favorited"] as? Bool
+        retweeted = dictionary["retweeted"] as? Bool
     }
 
 }

@@ -40,8 +40,8 @@
 - [x] add image assets (`.png` instead of `.svg` - why doesn't iOS like SVG?)
 - [x] add retweet and favorite counts
 - [x] **debug** why `favourites_count` is always 0
-- [ ] add support for favorite
-- [ ] add support for retweet
+- [x] add support for favorite
+- [x] add support for retweet
 - [ ] add support for reply
 
 #### Compose Tweet screen
