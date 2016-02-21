@@ -47,13 +47,17 @@ class TweetDetailViewController: UIViewController {
         favoritesLabel.text = "\(tweet.favoriteCount!) FAVORITES"
 
         if tweet.favorited! == true {
-            // FIXME: need to change the color of the actual button image
-            likeButton.imageView?.backgroundColor = UIColor.redColor()
+            let image = UIImage(named: "like")
+            let tintImage = image?.imageWithRenderingMode(.AlwaysTemplate)
+            likeButton.setImage(tintImage, forState: .Normal)
+            likeButton.tintColor = UIColor.redColor()
         }
         
         if tweet.retweeted! == true {
-            // FIXME: need to change the color of the actual button image
-            retweetButton.imageView?.backgroundColor = UIColor.redColor()
+            let image = UIImage(named: "retweet")
+            let tintImage = image?.imageWithRenderingMode(.AlwaysTemplate)
+            retweetButton.setImage(tintImage, forState: .Normal)
+            retweetButton.tintColor = UIColor.redColor()
         }
     }
 
