@@ -12,6 +12,7 @@ class ComposeTweetViewController: UIViewController {
 
     // set by the presenting controller
     var user: User!
+    var originalTweet: Tweet?
     
     @IBOutlet private weak var profileImageView: UIImageView!
     @IBOutlet private weak var usernameLabel: UILabel!
@@ -21,6 +22,10 @@ class ComposeTweetViewController: UIViewController {
 
     var tweetContents: String {
         return tweetTextView.text
+    }
+    
+    var replyToStatusId: NSNumber? {
+        return originalTweet?.id
     }
     
     // MARK: - Lifecycle
@@ -38,7 +43,16 @@ class ComposeTweetViewController: UIViewController {
         usernameLabel.text = user?.name
         screennameLabel.text = "@\(user!.screenname!)"
         
+        // reply state
+        configureForReply()
+        
         tweetTextView.becomeFirstResponder()
+    }
+    
+    func configureForReply() {
+        if let orig = originalTweet {
+            tweetTextView.text = "@\(orig.user!.screenname!) "
+        }
     }
     
     

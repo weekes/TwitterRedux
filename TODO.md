@@ -44,7 +44,7 @@
 - [x] add support for favorite
 - [x] add support for retweet
 - [x] immediately update state for like and retweet buttons
-- [ ] add support for reply
+- [x] add support for reply
 
 #### Compose Tweet screen
 - [x] add `ComposeTweetViewController` for posting tweet

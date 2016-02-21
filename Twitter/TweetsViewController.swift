@@ -66,20 +66,25 @@ class TweetsViewController: UIViewController {
     @IBAction func postTweet(sender: UIStoryboardSegue) {
         let composeTweetVC = sender.sourceViewController as! ComposeTweetViewController
         let tweetText = composeTweetVC.tweetContents
-        let params = ["status": tweetText]
-        TwitterClient.sharedInstance.composeTweetWithCompletion(params) { (success, error) -> () in
-            print("just posted tweet: \(tweetText)")
+        var params = ["status": tweetText]
+        
+        if let replyToStatusId = composeTweetVC.replyToStatusId {
+            let replyId = String(replyToStatusId)
+            print("this is a reply to \(replyId)")
             
+            params["in_reply_to_status_id"] = String(replyToStatusId)
+        }
+        
+        TwitterClient.sharedInstance.composeTweetWithCompletion(params) { (success, error) -> () in
             // insert at front of tweets array
             let freshTweet = Tweet(user: User.currentUser!, text: tweetText)
             self.tweets?.insert(freshTweet, atIndex: 0)
             
             // reload
             self.tableView.reloadData()
-            
         }
     }
-
+    
     @IBAction func onLogout(sender: UIButton) {
         if let user = User.currentUser {
             let alertVC = UIAlertController(title: user.screenname, message: "Are you sure you want to sign out of Twitter?", preferredStyle: .Alert)

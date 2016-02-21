@@ -95,14 +95,19 @@ class TweetDetailViewController: UIViewController {
     }
 
     
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "replySegue" {
+            let navController = segue.destinationViewController as! UINavigationController
+            let composeVC = navController.topViewController as! ComposeTweetViewController
+            composeVC.user = User.currentUser
+            composeVC.originalTweet = tweet
+        }
     }
-    */
 
 }

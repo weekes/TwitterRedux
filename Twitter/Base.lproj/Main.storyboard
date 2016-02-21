@@ -237,6 +237,9 @@
                                     <constraint firstAttribute="width" constant="65" id="zzK-Nz-Zvj"/>
                                 </constraints>
                                 <state key="normal" title="Button" image="reply"/>
+                                <connections>
+                                    <segue destination="2e7-o4-VTf" kind="presentation" identifier="replySegue" id="A6P-EZ-s1Y"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UWn-cY-iLy" userLabel="Retweet button">
                                 <rect key="frame" x="101" y="282" width="75" height="72"/>
@@ -458,4 +461,7 @@
         <image name="reply" width="32" height="36"/>
         <image name="retweet" width="37" height="36"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="A6P-EZ-s1Y"/>
+    </inferredMetricsTieBreakers>
 </document>
