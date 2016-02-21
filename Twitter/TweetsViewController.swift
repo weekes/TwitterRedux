@@ -66,9 +66,18 @@ class TweetsViewController: UIViewController {
     @IBAction func postTweet(sender: UIStoryboardSegue) {
         let composeTweetVC = sender.sourceViewController as! ComposeTweetViewController
         let tweetText = composeTweetVC.tweetContents
-        
-        let postingUser = User.currentUser
-        print("posting tweet on behalf of \(postingUser?.screenname): \(tweetText)")
+        let params = ["status": tweetText]
+        TwitterClient.sharedInstance.composeTweetWithCompletion(params) { (success, error) -> () in
+            print("just posted tweet: \(tweetText)")
+            
+            // insert at front of tweets array
+            let freshTweet = Tweet(user: User.currentUser!, text: tweetText)
+            self.tweets?.insert(freshTweet, atIndex: 0)
+            
+            // reload
+            self.tableView.reloadData()
+            
+        }
     }
 
     @IBAction func onLogout(sender: UIButton) {

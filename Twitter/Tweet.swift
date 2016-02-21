@@ -10,9 +10,9 @@ import UIKit
 
 struct Tweet {
     
-    let user: User?
-    let text: String?
-    let createdAtString: String?
+    var user: User?
+    var text: String?
+    var createdAtString: String?
     let dictionary: NSDictionary
     let retweetCount: NSNumber?
     let favoriteCount: NSNumber?
@@ -69,16 +69,25 @@ struct Tweet {
     }
 
     init(dictionary: NSDictionary) {
-        self.dictionary = dictionary;
+        self.dictionary = dictionary
         
-        user = User(dictionary: dictionary["user"] as! NSDictionary)
+        if let userDict = dictionary["user"] {
+            user = User(dictionary: userDict as! NSDictionary)
+        }
         text = dictionary["text"] as? String
         createdAtString = dictionary["created_at"] as? String
         retweetCount = dictionary["retweet_count"] as? NSNumber ?? 0
         favoriteCount = dictionary["favorite_count"] as? NSNumber ?? 0
         
-        favorited = dictionary["favorited"] as? Bool
-        retweeted = dictionary["retweeted"] as? Bool
+        favorited = dictionary["favorited"] as? Bool ?? false
+        retweeted = dictionary["retweeted"] as? Bool ?? false
+    }
+    
+    init(user: User, text: String) {
+        self.init(dictionary: [String: AnyObject]())
+        self.user = user
+        self.text = text
+        self.createdAtString = Tweet.dateFormatter.stringFromDate(NSDate())
     }
 
 }

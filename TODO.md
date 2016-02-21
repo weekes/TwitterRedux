@@ -51,4 +51,4 @@
 - [x] layout ComposeTweet screen
 - [x] present screen modally
 - [x] change navbar background color and text color (HEX #55ACEE)
-- [ ] wire up posting tweet
+- [x] wire up posting tweet

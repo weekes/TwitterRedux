@@ -78,6 +78,22 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    func composeTweetWithCompletion(params: NSDictionary?, completion: (success: Bool, error: NSError?) -> ()) {
+        
+        // POST update
+        POST("1.1/statuses/update.json", parameters: params,
+            progress: nil,
+            success:  { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
+                // SUCCESS
+                completion(success: true, error: nil)
+            },
+            failure: { (operation: NSURLSessionDataTask?, error: NSError) -> Void in
+                //FAILURE
+                print("Unable to udpate status: \(error)")
+                completion(success: false, error: error)
+        })
+    }
+    
     func loginWithCompletion(completion: (user: User?, error: NSError?) -> ()) {
         loginCompletion = completion
         
