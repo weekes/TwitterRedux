@@ -24,14 +24,14 @@
 - [x] add support for pullToRefresh
 - [x] change navbar color theme (is this across entire app or vc by vc?)
 - [x] use SSL-enabled profile images `profile_image_url_https`
-- [ ] debug intermittent `kCFStreamErrorDomainSSL, -9802` SSL certificate error
+- [ ] **debug** intermittent `kCFStreamErrorDomainSSL, -9802` SSL certificate error
 
 #### Prototype cell
 - [x] clip profile image radius
 - [x] add user handle label
 - [x] add timestamp label
+- [x] calculate relative timestamp string (1m-59m, 1h-23h, 1d-6d, MM/DD/YY)
 - [ ] add "explanation" label
-- [ ] calculate relative timestamp string
 - [ ] consider using `nameLabel.preferredMaxLayoutWidth` hack
 
 #### Tweet Details screen
@@ -39,7 +39,7 @@
 - [x] layout TweetDetail controls
 - [x] add image assets (`.png` instead of `.svg` - why doesn't iOS like SVG?)
 - [x] add retweet and favorite counts
-- [ ] debug why `favourites_count` is always 0
+- [ ] **debug** why `favourites_count` is always 0
 - [ ] add support for favorite
 - [ ] add support for retweet
 - [ ] add support for reply

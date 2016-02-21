@@ -23,13 +23,6 @@ struct Tweet {
         return dateFormatter
     }()
     
-    private static var relativeDateFormatter: NSDateFormatter = {
-        let relativeDateFormatter = NSDateFormatter()
-        relativeDateFormatter.timeStyle = .ShortStyle
-        relativeDateFormatter.doesRelativeDateFormatting = true
-        return relativeDateFormatter
-    }()
-    
     private static var absoluteDateFormatter: NSDateFormatter = {
         let absoluteDateFormatter = NSDateFormatter()
         absoluteDateFormatter.timeStyle = .ShortStyle
@@ -51,7 +44,7 @@ struct Tweet {
     }
     
     private static func convertDateToRelativeTimestamp(date: NSDate) -> String? {
-        return Tweet.relativeDateFormatter.stringFromDate(date)
+        return date.formatAsTimeAgo()
     }
 
     private static func convertDateToAbsoluteTimestamp(date: NSDate) -> String? {
@@ -78,4 +71,35 @@ struct Tweet {
         favouritesCount = dictionary["favourites_count"] as? NSNumber ?? 0
     }
 
+}
+
+extension NSDate {
+//    let minute = 60
+//    let hour = 3600
+//    let day = 86400
+//    let week = 604800
+    
+    func formatAsTimeAgo() -> String {
+        let secondsSince = Double.abs(self.timeIntervalSinceNow)
+        var timeAgo: String
+        switch secondsSince {
+        case 0..<60:
+            let seconds = Int(secondsSince)
+            timeAgo = "\(seconds)s" // seconds
+        case 60..<3600:
+            let minutes = Int(secondsSince / 60)
+            timeAgo = "\(minutes)m" // minutes
+        case 3600..<86399:
+            let hours = Int(secondsSince / 3600)
+            timeAgo = "\(hours)h" // hours
+        case 86400..<604800:
+            let days = Int(secondsSince / 86400)
+            timeAgo = "\(days)d" //days
+        default:
+            timeAgo = Tweet.absoluteDateFormatter.stringFromDate(self)
+            
+        }
+        
+        return timeAgo
+    }
 }
