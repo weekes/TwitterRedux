@@ -14,7 +14,10 @@ class TweetsViewController: UIViewController {
     
     @IBOutlet private weak var tableView: UITableView!
     private var refreshControl: UIRefreshControl!
+    private var loadingAdditionalTweets = false
     
+    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,14 +27,29 @@ class TweetsViewController: UIViewController {
         tableView.estimatedRowHeight = 140
         
         refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: "fetchTweets", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: "refreshTweets", forControlEvents: UIControlEvents.ValueChanged)
         tableView.insertSubview(refreshControl, atIndex: 0)
         
-        fetchTweets()
+        refreshTweets()
     }
     
-    func fetchTweets() {
-        TwitterClient.sharedInstance.homeTimelineWithParams(nil) { (tweets, error) -> () in
+    // MARK: - API Access
+
+    func refreshTweets() {
+        fetchTweets(nil)
+    }
+    
+    private func loadAdditionalTweets() {
+        if let max_id = tweets?.last?.id {
+            let max_id_string = String(max_id)
+            let params = ["max_id": max_id_string]
+            fetchTweets(params)
+        }
+    }
+    
+    private func fetchTweets(params: NSDictionary?) {
+        TwitterClient.sharedInstance.homeTimelineWithParams(params) { (tweets, error) -> () in
+            self.loadingAdditionalTweets = false
             self.tweets = tweets
             self.tableView.reloadData()
             if self.refreshControl.refreshing {
@@ -39,7 +57,7 @@ class TweetsViewController: UIViewController {
             }
         }
     }
-
+    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -128,5 +146,22 @@ extension TweetsViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+extension TweetsViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if !loadingAdditionalTweets {
+            // determine height of tableView and threshold for requesting more tweets
+            let scrollViewContentHeight = tableView.contentSize.height
+            let additionalDataThreshold = scrollViewContentHeight - tableView.bounds.size.height
+            
+            if scrollView.contentOffset.y > additionalDataThreshold && (tableView.dragging) {
+                loadingAdditionalTweets = true
+                loadAdditionalTweets()
+            }
+        }
     }
 }

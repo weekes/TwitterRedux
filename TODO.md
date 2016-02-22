@@ -25,6 +25,7 @@
 - [x] add support for pullToRefresh
 - [x] change navbar color theme (is this across entire app or vc by vc? RGB=85,172,238, HEX #55ACEE)
 - [x] use SSL-enabled profile images `profile_image_url_https`
+- [x] *Optional* add infinite scroll
 - [ ] **debug** intermittent `kCFStreamErrorDomainSSL, -9802` SSL certificate error
 
 #### Prototype cell
@@ -32,8 +33,7 @@
 - [x] add user handle label
 - [x] add timestamp label
 - [x] calculate relative timestamp string (1m-59m, 1h-23h, 1d-6d, MM/DD/YY)
-- [ ] add "explanation" label
-- [ ] consider using `nameLabel.preferredMaxLayoutWidth` hack
+- [ ] why didn't I have to use the `nameLabel.preferredMaxLayoutWidth` hack
 
 #### Tweet Details screen
 - [x] add `TweetDetailViewController` for tweet detail
@@ -52,3 +52,6 @@
 - [x] present screen modally
 - [x] change navbar background color and text color (HEX #55ACEE)
 - [x] wire up posting tweet
+
+#### Potential enhancements
+- [ ] add "explanation" label

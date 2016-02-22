@@ -18,6 +18,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in with Twitter (using OAuth)" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZp-Df-zRD">
+                                <rect key="frame" x="40" y="241" width="520" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1pq-Qc-TSI">
                                 <rect key="frame" x="221" y="286" width="158" height="28"/>
                                 <constraints>
@@ -33,7 +39,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="1pq-Qc-TSI" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4Sw-HR-OT9"/>
+                            <constraint firstItem="1pq-Qc-TSI" firstAttribute="top" secondItem="sZp-Df-zRD" secondAttribute="bottom" constant="24" id="RoF-as-8sS"/>
                             <constraint firstItem="1pq-Qc-TSI" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="XJq-8A-s9A"/>
+                            <constraint firstAttribute="trailing" secondItem="sZp-Df-zRD" secondAttribute="trailing" constant="40" id="arf-uv-AKm"/>
+                            <constraint firstItem="sZp-Df-zRD" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="40" id="lYS-ft-2Z9"/>
                         </constraints>
                     </view>
                     <connections>
@@ -42,7 +51,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="813" y="461"/>
+            <point key="canvasLocation" x="810" y="461"/>
         </scene>
         <!--Home Timeline-->
         <scene sceneID="c7D-jb-JZB">
