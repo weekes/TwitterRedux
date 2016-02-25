@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import BDBOAuth1Manager
 
 let requestTokenEndpoint = "oauth/request_token"
 let authTokenEndpoint = "https://api.twitter.com/oauth/authorize?oauth_token"

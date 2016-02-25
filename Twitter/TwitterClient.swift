@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import BDBOAuth1Manager
 
 let twitterConsumerKey = "RqDPeHHUGNGvReV2iTDFC0OhA"
 let twitterConsumerSecret = "G65zYeZ20XbEwaLTkqjdICca1WP2tArSPSsgd9KRNVGfHQORzh"
