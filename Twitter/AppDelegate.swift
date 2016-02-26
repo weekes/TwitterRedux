@@ -19,13 +19,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "userDidLogout", name: userDidLogoutNotification, object: nil)
+
         
-        if let user = User.currentUser {
-            // Go to the logged in screen
-            print("Current user detected: \(user.name)")
-            let timelineNavController = storyboard.instantiateViewControllerWithIdentifier("TimelineNavigationController") as! UINavigationController
-            window?.rootViewController = timelineNavController
-        }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let hamburgerViewController = window?.rootViewController as! HamburgerViewController
+        let menuViewController = storyboard.instantiateViewControllerWithIdentifier("MenuViewController") as! MenuViewController
+        
+        menuViewController.hamburgerViewController = hamburgerViewController
+        hamburgerViewController.menuViewController = menuViewController
+        
+        
+//        if let user = User.currentUser {
+//            // Go to the logged in screen
+//            print("Current user detected: \(user.name)")
+//            let timelineNavController = storyboard.instantiateViewControllerWithIdentifier("TimelineNavigationController") as! UINavigationController
+//            window?.rootViewController = timelineNavController
+//        }
         
         return true
     }
