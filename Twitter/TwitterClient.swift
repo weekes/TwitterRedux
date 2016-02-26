@@ -8,6 +8,7 @@
 
 import UIKit
 import BDBOAuth1Manager
+import SwiftyJSON
 
 let twitterConsumerKey = "RqDPeHHUGNGvReV2iTDFC0OhA"
 let twitterConsumerSecret = "G65zYeZ20XbEwaLTkqjdICca1WP2tArSPSsgd9KRNVGfHQORzh"
@@ -127,7 +128,8 @@ class TwitterClient: BDBOAuth1SessionManager {
                         // SUCCESS
                         if let response = response {
                             print("We've got a user: \(response)")
-                            let user = User(dictionary: response as! NSDictionary)
+                            let json = JSON(response)
+                            let user = User(json: json)
                             User.currentUser = user
                             print("user: \(user.name)")
                             self.loginCompletion?(user: user, error: nil)

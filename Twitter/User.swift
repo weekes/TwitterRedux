@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 var _currentUser: User?
 let currentUserKey = "kCurrentUserKey"
@@ -19,18 +20,14 @@ struct User {
     var screenname: String?
     var profileImageUrlString: String?
     var tagline: String?
-    var dictionary: NSDictionary
+    var json: JSON
     
     static var currentUser: User? {
         get {
             if _currentUser == nil {
                 if let data = NSUserDefaults.standardUserDefaults().objectForKey(currentUserKey) as? NSData {
-                    do {
-                        let dictionary = try NSJSONSerialization.JSONObjectWithData(data, options: .MutableLeaves) as! NSDictionary
-                        _currentUser = User(dictionary: dictionary)
-                    } catch {
-                        print("Error creating user from dictionary: \(error)")
-                    }
+                    let jsonFromData = JSON(data)
+                    _currentUser = User(json: jsonFromData)
                 }
             }
             return _currentUser
@@ -39,12 +36,8 @@ struct User {
             _currentUser = user
             
             if let cuser = _currentUser {
-                do {
-                    let data = try NSJSONSerialization.dataWithJSONObject(cuser.dictionary, options: .PrettyPrinted)
-                    NSUserDefaults.standardUserDefaults().setObject(data, forKey: currentUserKey)
-                } catch {
-                    print("Error parsing JSON: \(error)")
-                }
+                let data = cuser.json.string?.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+                NSUserDefaults.standardUserDefaults().setObject(data, forKey: currentUserKey)
             } else {
                 NSUserDefaults.standardUserDefaults().setObject(nil, forKey: currentUserKey)
             }
@@ -53,12 +46,21 @@ struct User {
     }
 
     init(dictionary: NSDictionary) {
-        self.dictionary = dictionary
+        json = JSON.null
         
         name = dictionary["name"] as? String
         screenname = dictionary["screen_name"] as? String
         profileImageUrlString = dictionary["profile_image_url_https"] as? String
         tagline = dictionary["description"] as? String
+    }
+    
+    init(json: JSON) {
+        self.json = json
+
+        name = json["name"].string
+        screenname = json["screen_name"].string
+        profileImageUrlString = json["profile_image_url_https"].string
+        tagline = json["description"].string
     }
     
     func logout() {
