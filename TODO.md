@@ -5,7 +5,8 @@
 #### Refactor Twitter (Project 3)
 - [x] Tag last week's project
 - [x] Switch from dynamic frameworks to bridging header file
-- [ ] Fix profile images by adding ATS exception on Twitter's SHA-1 cert
+- [x] Switch `User` struct from `NSDictionary` access to SwiftyJSON
+- [x] Fix profile images by adding ATS exception on Twitter's SHA-1 cert
 - [ ] Review Project 3 Feedback Guide
 
 <!---
