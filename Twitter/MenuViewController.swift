@@ -8,6 +8,10 @@
 
 import UIKit
 
+let NUM_SECTIONS = 2
+let TIMELINE_SECTION = 0
+let ACCOUNT_SECTION = 1
+
 class MenuViewController: UIViewController {
 
     @IBOutlet weak private var tableView: UITableView!
@@ -55,6 +59,21 @@ class MenuViewController: UIViewController {
         viewControllers.append(mentionsNavigationController)
     }
 
+    private func logoutUser() {
+        if let user = User.currentUser {
+            let alertVC = UIAlertController(title: user.screenname, message: "Are you sure you want to sign out of Twitter?", preferredStyle: .Alert)
+            let logoutAction = UIAlertAction(title: "Sign out", style: .Default) { (action) in
+                user.logout()
+            }
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+                // dismiss
+            }
+            alertVC.addAction(logoutAction)
+            alertVC.addAction(cancelAction)
+            
+            presentViewController(alertVC, animated: true, completion: nil)
+        }
+    }
     
     
     /*
@@ -73,13 +92,39 @@ class MenuViewController: UIViewController {
 extension MenuViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // account section
+        if section == ACCOUNT_SECTION {
+            return 1
+        }
+
         return viewControllers.count ?? 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MenuItemCell")! as UITableViewCell
-        cell.textLabel?.text = viewControllerTitles[indexPath.row]
+        
+        // account section
+        if indexPath.section == ACCOUNT_SECTION {
+            cell.textLabel?.text = "Sign out"
+        } else {
+            cell.textLabel?.text = viewControllerTitles[indexPath.row]
+        }
+        
         return cell
+    }
+
+    // MARK: - static table view
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return NUM_SECTIONS
+    }
+
+    func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if section == TIMELINE_SECTION {
+            return "Timelines"
+        } else {
+            return "Account"
+        }
     }
 }
 
@@ -89,6 +134,12 @@ extension MenuViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        hamburgerViewController.contentViewController = viewControllers[indexPath.row]
+
+        if indexPath.section == TIMELINE_SECTION {
+            hamburgerViewController.contentViewController = viewControllers[indexPath.row]
+        }  else if indexPath.section == ACCOUNT_SECTION {
+            logoutUser()
+        }
+        
     }
 }

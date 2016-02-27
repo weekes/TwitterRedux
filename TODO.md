@@ -10,17 +10,18 @@
 #### Custom container view
 - [x] Add basic container view
 - [x] Wire up `LoginViewController` as initial contentView
-- [ ] Add `tabBarItem` like functionality? or "2-way street" pattern?
+- [ ] Address "Presenting view controllers on detached view controllers is discouraged" on sign out dialog
+- [ ] Add `tabBarItem` like functionality? or "2-way street" pattern? (pass hamburgerMenu in constructor?)
 
 #### Hamburger ViewController
 - [x] Dragging anywhere in the view should review the menu
-- [ ] Other Hamburger menu apps: Slack, Uber, Google Inbox, Google Calendar
+- [x] Look at other Hamburger menu apps: Slack, Uber, Google Inbox, Google Calendar
 
 #### Menu ViewController
-- [ ] Remove separators on unused rows
-- [ ] Switch to static tableView
-- [ ] Customize with profile pic?
-- [ ] Move "Sign out" from `TweetViewController` to `MenuViewController` (i.e. "hamburger menu")
+- [x] Remove separators on unused rows
+- [x] Switch to tableView group style and sections
+- [x] Move "Sign out" from `TweetViewController` to `MenuViewController` (i.e. "hamburger menu")
+- [ ] (*optional*) Customize with profile pic?
 
 #### TweetViewController *(Home timeline)*
 - [ ] Set navbar title based on `TimelineType`
@@ -28,6 +29,7 @@
 - [ ] Update `ComposeTweetViewController` to use delegate pattern back to `TweetViewController`
 
 #### Profile ViewController
+- [ ] Remove unused `ProfileViewController`
 - [ ] Reuse TimelineViewController with profile header?
 - [ ] Contains user header view (and image)
 - [ ] Contains a section with the user's basic stats: # tweets, # following, # followers

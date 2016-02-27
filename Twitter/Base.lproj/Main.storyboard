@@ -143,16 +143,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="zxW-21-zPR">
-                        <barButtonItem key="leftBarButtonItem" style="plain" id="xCq-Vv-pJD">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="CeG-t2-DoY">
-                                <rect key="frame" x="20" y="7" width="64" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Sign out"/>
-                                <connections>
-                                    <action selector="onLogout:" destination="zRJ-I3-Ayc" eventType="touchUpInside" id="Xqc-Ri-VR1"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Compose" id="ZNr-kw-EHi">
                             <connections>
                                 <segue destination="2e7-o4-VTf" kind="presentation" identifier="composeSegue" id="35J-EP-vOq"/>
@@ -586,12 +576,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fcK-E8-6cD">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="fcK-E8-6cD">
                                 <rect key="frame" x="0.0" y="20" width="600" height="580"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuItemCell" id="ybr-ts-szL">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                        <rect key="frame" x="0.0" y="50" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ybr-ts-szL" id="afB-D1-2km">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -661,6 +651,6 @@
         <image name="retweet" width="37" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="A6P-EZ-s1Y"/>
+        <segue reference="35J-EP-vOq"/>
     </inferredMetricsTieBreakers>
 </document>
