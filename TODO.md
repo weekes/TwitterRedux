@@ -10,7 +10,7 @@
 #### Custom container view
 - [x] Add basic container view
 - [x] Wire up `LoginViewController` as initial contentView
-- [ ] Address "Presenting view controllers on detached view controllers is discouraged" on sign out dialog
+- [x] Address "Presenting view controllers on detached view controllers is discouraged" on sign out dialog
 - [ ] Add `tabBarItem` like functionality? or "2-way street" pattern? (pass hamburgerMenu in constructor?)
 
 #### Hamburger ViewController

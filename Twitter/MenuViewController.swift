@@ -71,7 +71,7 @@ class MenuViewController: UIViewController {
             alertVC.addAction(logoutAction)
             alertVC.addAction(cancelAction)
             
-            presentViewController(alertVC, animated: true, completion: nil)
+            hamburgerViewController.presentViewController(alertVC, animated: true, completion: nil)
         }
     }
     
