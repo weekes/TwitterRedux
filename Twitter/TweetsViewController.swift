@@ -10,11 +10,19 @@ import UIKit
 
 class TweetsViewController: UIViewController {
     
+    enum TimelineType {
+        case Home
+        case User
+        case Mentions
+    }
+    
     var tweets: [Tweet]?
     
     @IBOutlet private weak var tableView: UITableView!
     private var refreshControl: UIRefreshControl!
     private var loadingAdditionalTweets = false
+    
+    var timelineType: TimelineType = .Home
     
     
     // MARK: - Lifecycle
@@ -36,19 +44,20 @@ class TweetsViewController: UIViewController {
     // MARK: - API Access
 
     func refreshTweets() {
-        fetchTweets(nil)
+        let params = ["contributor_details":"true"]
+        fetchTweets(timelineType, params: params)
     }
     
     private func loadAdditionalTweets() {
+        var params = ["contributor_details":"true"]
         if let max_id = tweets?.last?.id {
-            let max_id_string = String(max_id)
-            let params = ["max_id": max_id_string]
-            fetchTweets(params)
+            params["max_id"] = String(max_id)
+            fetchTweets(timelineType, params: params)
         }
     }
     
-    private func fetchTweets(params: NSDictionary?) {
-        TwitterClient.sharedInstance.homeTimelineWithParams(params) { (tweets, error) -> () in
+    private func fetchTweets(type: TimelineType, params: NSDictionary?) {
+        TwitterClient.sharedInstance.timelineWithParams(type, params: params) { (tweets, error) -> () in
             self.loadingAdditionalTweets = false
             self.tweets = tweets
             self.tableView.reloadData()

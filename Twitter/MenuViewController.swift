@@ -12,10 +12,11 @@ class MenuViewController: UIViewController {
 
     @IBOutlet weak private var tableView: UITableView!
     
-    private var profileNavigationController: UIViewController!
-    private var tweetsNavigationController: UIViewController!
-    private var mentionsNavigationController: UIViewController!
+    private var profileNavigationController: UINavigationController!
+    private var tweetsNavigationController: UINavigationController!
+    private var mentionsNavigationController: UINavigationController!
     
+    private var viewControllerTitles = ["Profile", "Home", "Mentions"]
     private var viewControllers: [UIViewController] = []
     
     var hamburgerViewController: HamburgerViewController!
@@ -35,10 +36,19 @@ class MenuViewController: UIViewController {
 
     private func setUpMenuItemViewControllers() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        profileNavigationController = storyboard.instantiateViewControllerWithIdentifier("ProfileNavigationController")
-//        tweetsNavigationController = storyboard.instantiateViewControllerWithIdentifier("TweetsViewController")
-        tweetsNavigationController = storyboard.instantiateViewControllerWithIdentifier("TimelineNavigationController")
-        mentionsNavigationController = storyboard.instantiateViewControllerWithIdentifier("MentionsNavigationController")
+
+        profileNavigationController = storyboard.instantiateViewControllerWithIdentifier("TimelineNavigationController") as! UINavigationController
+        let profileVC = profileNavigationController.topViewController as! TweetsViewController
+        profileVC.timelineType = TweetsViewController.TimelineType.User
+
+        tweetsNavigationController = storyboard.instantiateViewControllerWithIdentifier("TimelineNavigationController") as! UINavigationController
+        let homeVC = tweetsNavigationController.topViewController as! TweetsViewController
+        homeVC.timelineType = TweetsViewController.TimelineType.Home
+        
+        mentionsNavigationController = storyboard.instantiateViewControllerWithIdentifier("TimelineNavigationController") as! UINavigationController
+        let mentionsVC = mentionsNavigationController.topViewController as! TweetsViewController
+        mentionsVC.timelineType = TweetsViewController.TimelineType.Mentions
+        
         
         viewControllers.append(profileNavigationController)
         viewControllers.append(tweetsNavigationController)
@@ -68,8 +78,7 @@ extension MenuViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("MenuItemCell")! as UITableViewCell
-        let menuItemController = viewControllers[indexPath.row] as! UINavigationController
-        cell.textLabel?.text = menuItemController.title
+        cell.textLabel?.text = viewControllerTitles[indexPath.row]
         return cell
     }
 }
