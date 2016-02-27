@@ -28,7 +28,7 @@ struct Tweet {
     
     private static var absoluteDateFormatter: NSDateFormatter = {
         let absoluteDateFormatter = NSDateFormatter()
-        absoluteDateFormatter.timeStyle = .ShortStyle
+        absoluteDateFormatter.timeStyle = .NoStyle
         absoluteDateFormatter.dateStyle = .ShortStyle
         absoluteDateFormatter.doesRelativeDateFormatting = false
         return absoluteDateFormatter

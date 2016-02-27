@@ -24,7 +24,8 @@
 - [ ] (*optional*) Customize with profile pic?
 
 #### TweetViewController *(Home timeline)*
-- [ ] Set navbar title based on `TimelineType`
+- [x] Set navbar title based on `TimelineType`
+- [x] User icon for "Compose" button
 - [ ] Fix windowing on Pull To Refresh
 - [ ] Update `ComposeTweetViewController` to use delegate pattern back to `TweetViewController`
 
@@ -36,8 +37,8 @@
 
 #### Mentions timeline
 - [x] Reuse `TweetViewController` for mentions
+- [x] Fix date display when > 6 days (don't include time)
 - [ ] Remove unused `MentionsViewController`
-- [ ] Fix date display when > 6 days (don't include time)
 
 #### TweetCell
 - [ ] properly display retweets (avatar, retweeted by, etc.)

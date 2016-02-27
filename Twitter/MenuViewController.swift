@@ -17,7 +17,7 @@ class MenuViewController: UIViewController {
     @IBOutlet weak private var tableView: UITableView!
     
     private var profileNavigationController: UINavigationController!
-    private var tweetsNavigationController: UINavigationController!
+    private var homeNavigationController: UINavigationController!
     private var mentionsNavigationController: UINavigationController!
     
     private var viewControllerTitles = ["Profile", "Home", "Mentions"]
@@ -34,7 +34,7 @@ class MenuViewController: UIViewController {
         setUpMenuItemViewControllers()
 
         // initial view controller
-        hamburgerViewController.contentViewController = mentionsNavigationController
+        hamburgerViewController.contentViewController = homeNavigationController
     }
 
 
@@ -45,8 +45,8 @@ class MenuViewController: UIViewController {
         let profileVC = profileNavigationController.topViewController as! TweetsViewController
         profileVC.timelineType = TweetsViewController.TimelineType.User
 
-        tweetsNavigationController = storyboard.instantiateViewControllerWithIdentifier("TimelineNavigationController") as! UINavigationController
-        let homeVC = tweetsNavigationController.topViewController as! TweetsViewController
+        homeNavigationController = storyboard.instantiateViewControllerWithIdentifier("TimelineNavigationController") as! UINavigationController
+        let homeVC = homeNavigationController.topViewController as! TweetsViewController
         homeVC.timelineType = TweetsViewController.TimelineType.Home
         
         mentionsNavigationController = storyboard.instantiateViewControllerWithIdentifier("TimelineNavigationController") as! UINavigationController
@@ -55,7 +55,7 @@ class MenuViewController: UIViewController {
         
         
         viewControllers.append(profileNavigationController)
-        viewControllers.append(tweetsNavigationController)
+        viewControllers.append(homeNavigationController)
         viewControllers.append(mentionsNavigationController)
     }
 

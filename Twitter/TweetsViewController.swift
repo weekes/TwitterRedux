@@ -10,10 +10,10 @@ import UIKit
 
 class TweetsViewController: UIViewController {
     
-    enum TimelineType {
-        case Home
-        case User
-        case Mentions
+    enum TimelineType: String {
+        case Home = "Home"
+        case User = "Profile"
+        case Mentions = "Mentions"
     }
     
     var tweets: [Tweet]?
@@ -22,7 +22,11 @@ class TweetsViewController: UIViewController {
     private var refreshControl: UIRefreshControl!
     private var loadingAdditionalTweets = false
     
-    var timelineType: TimelineType = .Home
+    var timelineType: TimelineType = .Home {
+        didSet {
+            self.navigationItem.title = timelineType.rawValue
+        }
+    }
     
     
     // MARK: - Lifecycle

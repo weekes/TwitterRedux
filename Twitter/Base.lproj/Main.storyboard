@@ -143,7 +143,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Home" id="zxW-21-zPR">
-                        <barButtonItem key="rightBarButtonItem" title="Compose" id="ZNr-kw-EHi">
+                        <barButtonItem key="rightBarButtonItem" systemItem="compose" id="ZNr-kw-EHi">
                             <connections>
                                 <segue destination="2e7-o4-VTf" kind="presentation" identifier="composeSegue" id="35J-EP-vOq"/>
                             </connections>
