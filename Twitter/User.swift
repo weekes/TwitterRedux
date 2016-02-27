@@ -26,7 +26,7 @@ struct User {
         get {
             if _currentUser == nil {
                 if let data = NSUserDefaults.standardUserDefaults().objectForKey(currentUserKey) as? NSData {
-                    let jsonFromData = JSON(data)
+                    let jsonFromData = JSON(data: data, options: .AllowFragments, error: nil)
                     _currentUser = User(json: jsonFromData)
                 }
             }
@@ -36,8 +36,17 @@ struct User {
             _currentUser = user
             
             if let cuser = _currentUser {
-                let data = cuser.json.string?.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
-                NSUserDefaults.standardUserDefaults().setObject(data, forKey: currentUserKey)
+                let data: NSData?
+                do {
+                    data = try cuser.json.rawData()
+                } catch _ {
+                    data = nil
+                }
+                
+                if let _ = data {
+                    NSUserDefaults.standardUserDefaults().setObject(data, forKey: currentUserKey)
+                }
+                
             } else {
                 NSUserDefaults.standardUserDefaults().setObject(nil, forKey: currentUserKey)
             }
@@ -61,6 +70,11 @@ struct User {
         screenname = json["screen_name"].string
         profileImageUrlString = json["profile_image_url_https"].string
         tagline = json["description"].string
+    }
+    
+    func login() {
+        // User is already logged in at this point
+        NSNotificationCenter.defaultCenter().postNotificationName(userDidLoginNotification, object: nil)
     }
     
     func logout() {
