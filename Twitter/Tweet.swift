@@ -7,11 +7,11 @@
 //
 
 import UIKit
+import SwiftyJSON
 
 struct Tweet {
     
     var user: User?
-    var user_id: Int?
     var text: String?
     var createdAtString: String?
     let dictionary: NSDictionary
@@ -74,8 +74,8 @@ struct Tweet {
         
         // FIXME: - Refactor this as part of the switch to SwiftyJSON
         if let userDict = dictionary["user"] {
-            user = User(dictionary: userDict as! NSDictionary)
-            user_id = userDict["id"] as? Int
+            let userJSON = JSON(userDict)
+            user = User(json: userJSON)
         }
         text = dictionary["text"] as? String
         createdAtString = dictionary["created_at"] as? String

@@ -196,7 +196,7 @@ extension TweetsViewController: UITableViewDataSource {
             let tweet = tweets[indexPath.row]
             cell.tweet = tweet
             
-            if let user_id = tweet.user_id {
+            if let user_id = tweet.user?.id {
                 cell.profileImageView.tag = user_id
                 cell.profileImageView.userInteractionEnabled = true
                 

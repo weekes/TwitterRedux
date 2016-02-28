@@ -62,15 +62,6 @@ struct User {
         }
     }
 
-    init(dictionary: NSDictionary) {
-        json = JSON.null
-        
-        name = dictionary["name"] as? String
-        screenname = dictionary["screen_name"] as? String
-        profileImageUrlString = dictionary["profile_image_url_https"] as? String
-        tagline = dictionary["description"] as? String
-    }
-    
     init(json: JSON) {
         self.json = json
 
