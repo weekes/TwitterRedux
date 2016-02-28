@@ -18,6 +18,8 @@ struct User {
     
     var name: String?
     var screenname: String?
+    var id: Int?
+    var id_str: String?
     var profileImageUrlString: String?
     var tagline: String?
     var location: String?
@@ -74,6 +76,8 @@ struct User {
 
         name = json["name"].string
         screenname = json["screen_name"].string
+        id = json["id"].int
+        id_str = json["id_str"].string
         profileImageUrlString = json["profile_image_url_https"].string
         tagline = json["description"].string
         location = json["location"].string

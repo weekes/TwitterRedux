@@ -26,7 +26,7 @@
 #### TweetViewController *(Home timeline)*
 - [x] Set navbar title based on `TimelineType`
 - [x] User icon for "Compose" button
-- [ ] Tapping on a user image should bring up that user's profile page
+- [x] Tapping on a user image should bring up that user's profile page
 - [ ] Fix windowing on Pull To Refresh
 - [ ] Update `ComposeTweetViewController` to use delegate pattern back to `TweetViewController`
 

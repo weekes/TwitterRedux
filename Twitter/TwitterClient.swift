@@ -53,6 +53,24 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    func getUserWithParams(params: NSDictionary?, completion: (user: User?, error: NSError?) -> ()) {
+        
+        // GET user
+        GET("1.1/users/show.json", parameters: params,
+            progress: nil,
+            success: { (operation: NSURLSessionDataTask, response: AnyObject?) -> Void in
+                // SUCCESS
+                let json = JSON(response as! NSDictionary)
+                let user = User(json: json)
+                completion(user: user, error: nil)
+            },
+            failure: { (operation: NSURLSessionDataTask?, error: NSError) -> Void in
+                // FAILURE
+                print("Unable to retrieve user: \(error)")
+                completion(user: nil, error: error)
+        })
+    }
+    
     func favoriteTweetWithParams(params: NSDictionary?, completion: (success: Bool, error: NSError?) -> ()) {
         
         // POST favorite

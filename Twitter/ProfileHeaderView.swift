@@ -24,7 +24,7 @@ class ProfileHeaderView: UIView {
     
     var user: User! {
         didSet {
-            if let user = User.currentUser {
+            if let user = user {
                 
                 if let urlString = user.profileImageUrlString {
                     if let imageURL = NSURL(string: urlString) {

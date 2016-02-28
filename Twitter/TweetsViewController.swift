@@ -17,6 +17,7 @@ class TweetsViewController: UIViewController {
     }
     
     var tweets: [Tweet]?
+    var profileUserId: Int?
     
     @IBOutlet private weak var tableView: UITableView!
     private var profileHeaderView: ProfileHeaderView!
@@ -81,16 +82,22 @@ class TweetsViewController: UIViewController {
     // MARK: - API Access
 
     func refreshTweets() {
-        let params = ["contributor_details":"true"]
+        var params = ["contributor_details":"true"]
+        if let user_id = profileUserId {
+            params["user_id"] = String(user_id)
+        }
         fetchTweets(timelineType, params: params)
     }
     
     private func loadAdditionalTweets() {
         var params = ["contributor_details":"true"]
+        if let user_id = profileUserId {
+            params["user_id"] = String(user_id)
+        }
         if let max_id = tweets?.last?.id {
             params["max_id"] = String(max_id)
-            fetchTweets(timelineType, params: params)
         }
+        fetchTweets(timelineType, params: params)
     }
     
     private func fetchTweets(type: TimelineType, params: NSDictionary?) {
@@ -105,9 +112,14 @@ class TweetsViewController: UIViewController {
     }
     
     private func configureProfileHeaderView() {
-        // FIXME: pass in user, for now _currentUser
-        if let user = User.currentUser {
-            profileHeaderView.user = user
+        if profileUserId == nil {
+            profileUserId = User.currentUser?.id
+        }
+        if let user_id = profileUserId {
+            let params = ["user_id": String(user_id)]
+            TwitterClient.sharedInstance.getUserWithParams(params, completion: { (user, error) -> () in
+                self.profileHeaderView.user = user
+            })
         }
     }
     
@@ -156,6 +168,17 @@ class TweetsViewController: UIViewController {
         }
     }
     
+    func onProfileImageTap(sender: UITapGestureRecognizer) {
+        if let user_id = sender.view?.tag {
+            let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let tweetsVC = mainStoryboard.instantiateViewControllerWithIdentifier("TweetsViewController") as! TweetsViewController
+            
+            tweetsVC.timelineType = .User
+            tweetsVC.profileUserId = user_id
+            self.navigationController?.pushViewController(tweetsVC, animated: true)
+        }
+    }
+    
 }
 
 
@@ -172,6 +195,16 @@ extension TweetsViewController: UITableViewDataSource {
         if let tweets = tweets {
             let tweet = tweets[indexPath.row]
             cell.tweet = tweet
+            
+            if let user_id = tweet.user_id {
+                cell.profileImageView.tag = user_id
+                cell.profileImageView.userInteractionEnabled = true
+                
+                let profileImageTapGestureRecognizer = UITapGestureRecognizer(target: self, action: "onProfileImageTap:")
+                profileImageTapGestureRecognizer.numberOfTapsRequired = 1
+                cell.profileImageView.addGestureRecognizer(profileImageTapGestureRecognizer)
+                
+            }
         }
         
         return cell
