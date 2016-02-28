@@ -1,6 +1,6 @@
 # Project 4 - *Twitter Redux*
 
-Time spent: **X** hours spent in total
+Time spent: **14** hours spent in total
 
 ## User Stories
 
@@ -9,7 +9,7 @@ The following **required** functionality is completed:
 - [x] Hamburger menu
    - [x] Dragging anywhere in the view should reveal the menu.
    - [x] The menu should include links to your profile, the home timeline, and the mentions view.
-   - [ ] The menu can look similar to the example or feel free to take liberty with the UI.
+   - [x] The menu can look similar to the example or feel free to take liberty with the UI.
 - [x] Profile page
    - [x] Contains the user header view
    - [x] Contains a section with the users basic stats: # tweets, # following, # followers
@@ -31,7 +31,7 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] List anything else that you can get done to improve the app functionality!
+- [ ] Use SwiftyJSON for mapping JSON responses to models
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
@@ -43,7 +43,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<!-- <img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' /> -->
+![Video Walkthrough](HamburgerWalkthrough.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
