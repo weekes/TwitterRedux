@@ -26,19 +26,20 @@
 #### TweetViewController *(Home timeline)*
 - [x] Set navbar title based on `TimelineType`
 - [x] User icon for "Compose" button
+- [ ] Tapping on a user image should bring up that user's profile page
 - [ ] Fix windowing on Pull To Refresh
 - [ ] Update `ComposeTweetViewController` to use delegate pattern back to `TweetViewController`
 
 #### Profile ViewController
-- [ ] Remove unused `ProfileViewController`
-- [ ] Reuse TimelineViewController with profile header?
-- [ ] Contains user header view (and image)
-- [ ] Contains a section with the user's basic stats: # tweets, # following, # followers
+- [x] Remove unused `ProfileViewController`
+- [x] Reuse TimelineViewController with profile header?
+- [x] Contains user header view
+- [x] Contains a section with the user's basic stats: # tweets, # following, # followers
 
 #### Mentions timeline
 - [x] Reuse `TweetViewController` for mentions
 - [x] Fix date display when > 6 days (don't include time)
-- [ ] Remove unused `MentionsViewController`
+- [x] Remove unused `MentionsViewController`
 
 #### TweetCell
 - [ ] properly display retweets (avatar, retweeted by, etc.)

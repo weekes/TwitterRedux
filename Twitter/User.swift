@@ -20,6 +20,12 @@ struct User {
     var screenname: String?
     var profileImageUrlString: String?
     var tagline: String?
+    var location: String?
+    var urlString: String?
+    var followers_count: Int?
+    var friends_count: Int?
+    var statuses_count: Int?
+    
     var json: JSON
     
     static var currentUser: User? {
@@ -70,6 +76,12 @@ struct User {
         screenname = json["screen_name"].string
         profileImageUrlString = json["profile_image_url_https"].string
         tagline = json["description"].string
+        location = json["location"].string
+        urlString = json["url"].string
+        
+        followers_count = json["followers_count"].int
+        friends_count = json["friends_count"].int
+        statuses_count = json["statuses_count"].int
     }
     
     func login() {

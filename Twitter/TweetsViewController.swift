@@ -19,6 +19,7 @@ class TweetsViewController: UIViewController {
     var tweets: [Tweet]?
     
     @IBOutlet private weak var tableView: UITableView!
+    private var profileHeaderView: ProfileHeaderView!
     private var refreshControl: UIRefreshControl!
     private var loadingAdditionalTweets = false
     
@@ -38,11 +39,43 @@ class TweetsViewController: UIViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 140
         
+        profileHeaderView = NSBundle.mainBundle().loadNibNamed("ProfileHeaderView", owner: self, options: nil).first as? ProfileHeaderView
+        
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: "refreshTweets", forControlEvents: UIControlEvents.ValueChanged)
         tableView.insertSubview(refreshControl, atIndex: 0)
         
         refreshTweets()
+        
+        if timelineType != .User {
+            tableView.tableHeaderView?.hidden = true
+            tableView.tableHeaderView = nil
+        } else {
+            configureProfileHeaderView()
+            tableView.tableHeaderView = profileHeaderView
+            tableView.tableHeaderView!.layoutIfNeeded()
+            tableView.tableHeaderView!.hidden = false
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        resizeHeaderView()
+    }
+    
+    // Needed to resize the header to the correct (i.e. compressed) height
+    private func resizeHeaderView() {
+        if let headerView = tableView.tableHeaderView {
+            headerView.setNeedsLayout()
+            headerView.layoutIfNeeded()
+            
+            let height = headerView.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize).height
+            var frame = headerView.frame
+            frame.size.height = height
+            headerView.frame = frame
+            
+            tableView.tableHeaderView = headerView
+        }
     }
     
     // MARK: - API Access
@@ -68,6 +101,13 @@ class TweetsViewController: UIViewController {
             if self.refreshControl.refreshing {
                 self.refreshControl.endRefreshing()
             }
+        }
+    }
+    
+    private func configureProfileHeaderView() {
+        // FIXME: pass in user, for now _currentUser
+        if let user = User.currentUser {
+            profileHeaderView.user = user
         }
     }
     

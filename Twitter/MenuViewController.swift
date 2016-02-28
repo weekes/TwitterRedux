@@ -34,7 +34,7 @@ class MenuViewController: UIViewController {
         setUpMenuItemViewControllers()
 
         // initial view controller
-        hamburgerViewController.contentViewController = homeNavigationController
+        hamburgerViewController.contentViewController = profileNavigationController
     }
 
 
