@@ -45,8 +45,8 @@ class TweetDetailViewController: UIViewController {
         tweetTextLabel.text = tweet.text
         timestampLabel.text = tweet.absoluteTimestamp
         
-        retweetsLabel.text = "\(tweet.retweetCount!) RETWEETS"
-        favoritesLabel.text = "\(tweet.favoriteCount!) FAVORITES"
+        retweetsLabel.text = "\(tweet.retweetCount!)"
+        favoritesLabel.text = "\(tweet.favoriteCount!)"
 
         updateLikeButton(tweet.favorited!)
         updateRetweetButton(tweet.retweeted!)

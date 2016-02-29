@@ -16,7 +16,7 @@ class TweetsViewController: UIViewController {
         case Mentions = "Mentions"
     }
     
-    var tweets: [Tweet]?
+    var tweets = [Tweet]()
     var profileUserId: Int?
     
     @IBOutlet private weak var tableView: UITableView!
@@ -94,7 +94,7 @@ class TweetsViewController: UIViewController {
         if let user_id = profileUserId {
             params["user_id"] = String(user_id)
         }
-        if let max_id = tweets?.last?.id {
+        if let max_id = tweets.last?.id {
             params["max_id"] = String(max_id)
         }
         fetchTweets(timelineType, params: params)
@@ -103,7 +103,7 @@ class TweetsViewController: UIViewController {
     private func fetchTweets(type: TimelineType, params: NSDictionary?) {
         TwitterClient.sharedInstance.timelineWithParams(type, params: params) { (tweets, error) -> () in
             self.loadingAdditionalTweets = false
-            self.tweets = tweets
+            self.tweets = tweets!
             self.tableView.reloadData()
             if self.refreshControl.refreshing {
                 self.refreshControl.endRefreshing()
@@ -161,7 +161,7 @@ class TweetsViewController: UIViewController {
         TwitterClient.sharedInstance.composeTweetWithCompletion(params) { (success, error) -> () in
             // insert at front of tweets array
             let freshTweet = Tweet(user: User.currentUser!, text: tweetText)
-            self.tweets?.insert(freshTweet, atIndex: 0)
+            self.tweets.insert(freshTweet, atIndex: 0)
             
             // reload
             self.tableView.reloadData()
@@ -186,25 +186,23 @@ class TweetsViewController: UIViewController {
 extension TweetsViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tweets?.count ?? 0
+        return tweets.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell") as! TweetCell
         
-        if let tweets = tweets {
-            let tweet = tweets[indexPath.row]
-            cell.tweet = tweet
+        let tweet = tweets[indexPath.row]
+        cell.tweet = tweet
+        
+        if let user_id = tweet.user?.id {
+            cell.profileImageView.tag = user_id
+            cell.profileImageView.userInteractionEnabled = true
             
-            if let user_id = tweet.user?.id {
-                cell.profileImageView.tag = user_id
-                cell.profileImageView.userInteractionEnabled = true
-                
-                let profileImageTapGestureRecognizer = UITapGestureRecognizer(target: self, action: "onProfileImageTap:")
-                profileImageTapGestureRecognizer.numberOfTapsRequired = 1
-                cell.profileImageView.addGestureRecognizer(profileImageTapGestureRecognizer)
-                
-            }
+            let profileImageTapGestureRecognizer = UITapGestureRecognizer(target: self, action: "onProfileImageTap:")
+            profileImageTapGestureRecognizer.numberOfTapsRequired = 1
+            cell.profileImageView.addGestureRecognizer(profileImageTapGestureRecognizer)
+            
         }
         
         return cell
