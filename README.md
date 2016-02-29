@@ -31,12 +31,13 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] Use SwiftyJSON for mapping JSON responses to models
+- [x] Use SwiftyJSON for mapping JSON responses to models
+- [x] Fixed a few bugs found in last week's homework
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
-  1.
-  2.
+  1. Detached ViewControllers
+  2. How to share `TweetsViewController` across Mentions, Profile, Home timelines
 
 
 ## Video Walkthrough

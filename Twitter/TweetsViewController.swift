@@ -86,7 +86,7 @@ class TweetsViewController: UIViewController {
         if let user_id = profileUserId {
             params["user_id"] = String(user_id)
         }
-        fetchTweets(timelineType, params: params)
+        insertTweets(timelineType, params: params)
     }
     
     private func loadAdditionalTweets() {
@@ -97,13 +97,28 @@ class TweetsViewController: UIViewController {
         if let max_id = tweets.last?.id {
             params["max_id"] = String(max_id)
         }
-        fetchTweets(timelineType, params: params)
+        appendTweets(timelineType, params: params)
     }
     
-    private func fetchTweets(type: TimelineType, params: NSDictionary?) {
+    private func insertTweets(type: TimelineType, params: NSDictionary?) {
+        fetchTweets(type, params: params, insert: true)
+    }
+    
+    private func appendTweets(type: TimelineType, params: NSDictionary?) {
+        fetchTweets(type, params: params, insert: false)
+    }
+    
+    private func fetchTweets(type: TimelineType, params: NSDictionary?, insert: Bool) {
         TwitterClient.sharedInstance.timelineWithParams(type, params: params) { (tweets, error) -> () in
             self.loadingAdditionalTweets = false
-            self.tweets = tweets!
+            if let newTweets = tweets {
+                if insert {
+                    self.tweets.insertContentsOf(newTweets, at: 0)
+                } else {
+                    self.tweets.appendContentsOf(newTweets)
+                }
+            }
+            
             self.tableView.reloadData()
             if self.refreshControl.refreshing {
                 self.refreshControl.endRefreshing()
