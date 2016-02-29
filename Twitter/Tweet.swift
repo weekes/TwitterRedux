@@ -12,14 +12,16 @@ import SwiftyJSON
 struct Tweet {
     
     var user: User?
+    let id: Int?
     var text: String?
     var createdAtString: String?
-    let dictionary: NSDictionary
     let retweetCount: NSNumber?
     let favoriteCount: NSNumber?
     
     let favorited: Bool?
     let retweeted: Bool?
+    
+    var json: JSON?
     
     private static var dateFormatter: NSDateFormatter = {
         let dateFormatter = NSDateFormatter()
@@ -47,10 +49,6 @@ struct Tweet {
         return Tweet.dateFormatter.dateFromString(createdAtString!)
     }
     
-    var id: NSNumber? {
-        return self.dictionary["id"] as? NSNumber
-    }
-    
     private static func convertDateToRelativeTimestamp(date: NSDate) -> String? {
         return date.formatAsTimeAgo()
     }
@@ -63,31 +61,30 @@ struct Tweet {
         var tweets = [Tweet]()
         
         for dictionary in array {
-            tweets.append(Tweet(dictionary: dictionary))
+            let tweetJSON = JSON(dictionary)
+            tweets.append(Tweet(json: tweetJSON))
         }
         
         return tweets
     }
 
-    init(dictionary: NSDictionary) {
-        self.dictionary = dictionary
+    init(json: JSON) {
+        self.json = json
         
-        // FIXME: - Refactor this as part of the switch to SwiftyJSON
-        if let userDict = dictionary["user"] {
-            let userJSON = JSON(userDict)
-            user = User(json: userJSON)
-        }
-        text = dictionary["text"] as? String
-        createdAtString = dictionary["created_at"] as? String
-        retweetCount = dictionary["retweet_count"] as? NSNumber ?? 0
-        favoriteCount = dictionary["favorite_count"] as? NSNumber ?? 0
+        user            = User(json: json["user"])
+        id              = json["id"].int
+        text            = json["text"].string
+        createdAtString = json["created_at"].string
+        retweetCount    = json["retweet_count"].number
+        favoriteCount   = json["favorite_count"].number
         
-        favorited = dictionary["favorited"] as? Bool ?? false
-        retweeted = dictionary["retweeted"] as? Bool ?? false
+        favorited       = json["favorited"].bool ?? false
+        retweeted       = json["retweeted"].bool ?? false
     }
     
     init(user: User, text: String) {
-        self.init(dictionary: [String: AnyObject]())
+        // TODO: what is a good id to represent "not yet server recognized"? (-1, 0, nil?)
+        self.init(json: nil)
         self.user = user
         self.text = text
         self.createdAtString = Tweet.dateFormatter.stringFromDate(NSDate())
